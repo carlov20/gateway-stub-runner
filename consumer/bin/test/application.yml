@@ -1,0 +1,16 @@
+stubrunner:
+  ids-to-service-ids:
+    producer: PRODUCER-APP
+spring:
+  application:
+    name: CONSUMER-APP
+  cloud:
+    gateway:
+      routes:
+      - id: getProducerUser
+        uri: lb://PRODUCER-APP
+        predicates:
+        - Path=/person
+        - Method=GET
+        filters:
+        - RewritePath=/person, /user

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: CONSUMER-APP
+  cloud:
+    gateway:
+      routes:
+      - id: getProducerUser
+        uri: lb://PRODUCER-APP/user
+        predicates:
+        - Path=/person
+        - Method=GET
